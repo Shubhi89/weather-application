@@ -13,6 +13,7 @@ export default function SearchBox() {
     const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
     let data = await response.json();
     let result = {
+        city: city,
         temp: data.main.temp,
         tempMin: data.main.temp_min,
         tempMax: data.main.temp_max,
@@ -37,7 +38,6 @@ export default function SearchBox() {
 
   return (
     <div className="searchBox">
-      <h3>Search for the weather</h3>
       <form onSubmit={handleSubmit}>
         <TextField
           id="city"

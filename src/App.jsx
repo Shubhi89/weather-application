@@ -1,8 +1,10 @@
-import SearchBox from './searchBox';
+import WeatherApp from "./weatherApp"
 
 function App() {
   return(
-    <SearchBox/>
+    <>
+      <WeatherApp />
+    </>
   )
 }
 
