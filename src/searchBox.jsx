@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import "./searchBox.css";
 import { useState } from "react";
 
-export default function SearchBox() {
+export default function SearchBox({updateInfo}) {
   const apiUrl =
   "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
   const apiKey = "dbbf1fceb3627f31dc34c63f76b51778";
@@ -21,19 +21,20 @@ export default function SearchBox() {
         feelsLike: data.main.feels_like,
         weather : data.weather[0].description,
     };
-    console.log(result);
+    return result;
   }
 
   let [city, setCity] = useState("");
 
-  let handleChange = (event) => {
+  let handleChange =  (event) => {
     setCity(event.target.value);
   };
 
-  let handleSubmit = (event) => {
+  let handleSubmit = async (event) => {
     event.preventDefault();
     setCity("");
-    getWeatherInfo(city);
+    let info = await getWeatherInfo(city);
+    updateInfo(info);
   };
 
   return (
